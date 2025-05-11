@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url(80826311_l2_optimized\ \(1\).jpg)
+        }
+
+        .container {
+            /* background: rgb(41, 40, 40); */
+            padding: 30px 40px;
+            border-radius: 10px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+        }
+
+        .container h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-left: 90px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: slideIn 0.8s ease-out;
+            margin-right: 80px;
+        }
+
+        .form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: 0.3s;
+            font-size: 1rem;
+            width: 140%;
+        }
+
+        .form input:focus {
+            border-color: #74ebd5;
+            box-shadow: 0 0 5px rgba(116, 235, 213, 0.5);
+            outline: none;
+        }
+
+        button {
+            padding: 10px;
+            background: #000000;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+            margin-left: 65px;
+        }
+
+        button:hover {
+            background: #2be838;
+            color: black;
+        }
+
+        .Submit {
+
+            font-size: 15px;
+            width: 100px;
+            padding: 10px 0;
+            margin: 10px 0;
+            background-color: #ff1100;
+            margin: -5px;
+            border-radius: 20px;
+            margin-left: 5px;
+        }
+
+        .Submit:hover {
+            background-color: red;
+        }
+
+        #errorMsg {
+            color: rgb(194, 0, 0);
+            font-size: 1rem;
+            height: 1em;
+            font-weight: bold;
+        }
+
+        .warning {
+            padding: 12px 20px;
+            margin: 10px 0;
+            background-color: #ffcccc;
+            color: #a94442;
+            border-left: 5px solid #f44336;
+            border-radius: 5px;
+            font-weight: bold;
+            animation: fadeIn 5s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .form.shake {
+            animation: shake 0.4s;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .container h2 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 0.95rem;
+            }
+
+            #errorMsg {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <form id="registerForm" class="form animate">
+            <h2>Register</h2>
+            <input type="text" id="username" placeholder="username" />
+            <input type="text" id="Password" placeholder="Password" />
+            <input type="text" id="confirmPassword" placeholder="confirmPassword" />
+            <input type="text" id="fullname" placeholder="fullname" />
+            <input type="email" id="email" placeholder="email" />
+            <input type="text" id="Address" placeholder="Address" />
+            <input type="text" id="City" placeholder="City" />
+            <input type="text" id="Contactno" placeholder="Contactno" />
+            <p id="errorMsg"></p>
+            <button type="Submit" class="Submit">Submit</button>
+
+
+            <button onclick="goToLogin()">Go to Login</button>
+
+        </form>
+    </div>
+
+
+    <script>
+        const form = document.getElementById("registerForm");
+        const errorMsg = document.getElementById("errorMsg");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById("username").value.trim();
+            const Password = document.getElementById("Password").value.trim();
+            const confirmPassword = document.getElementById("confirmPassword").value.trim();
+            const fullname = document.getElementById("fullname").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const Address = document.getElementById("Address").value.trim();
+            const City = document.getElementById("City").value.trim();
+            const Contactno = document.getElementById("Contactno").value.trim();
+
+
+            if (!username || !Password || !confirmPassword || !fullname || !email || !Address || !City || !Contactno) {
+                errorMsg.textContent = "All fields are required!";
+                form.classList.add("shake");
+
+                setTimeout(() => {
+                    form.classList.remove("shake");
+                }, 400);
+
+                return;
+            }
+
+            // Simulate successful registration
+            errorMsg.style.color = "green";
+            errorMsg.textContent = "Registered successfully!";
+            form.reset();
+
+
+        });
+
+
+
+    </script>
+
+    <script>
+        function goToLogin() {
+            window.location.href = "login1.html";
+        }
+    </script>
+
+</body>
+
+</html>
